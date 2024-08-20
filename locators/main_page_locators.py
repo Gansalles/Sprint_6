@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 
 class MainPageLocators:
 
+    LOGO_SCOOTER = By.CLASS_NAME, "Header_LogoScooter__3lsAR" # Логотип "Самокат"
+    LOGO_YANDEX = By.CLASS_NAME, "Header_LogoYandex__3TSOI" # Логотип "Яндекс"
     COOKIE_BUTTON = By.XPATH, '//button[text() = "да все привыкли"]' # Кнопка кукки
     MAIN_PAGE = By.CLASS_NAME, "Home_HomePage__ZXKIX" # Стартовая страница
     ORDER_BUTTON = By.CLASS_NAME, "Button_Button__ra12g" # Кнопка заказать в шапке страницы

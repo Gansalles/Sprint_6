@@ -1,16 +1,16 @@
 import allure
 
 from data import Data
+from locators.main_page_locators import MainPageLocators
 from locators.order_page_locators import OrderPageLocators
 from pages.base_page import BasePage
 
 
 class OrderPage(BasePage):
 
-    @allure.step('Открываем страницу регистрации')
+    @allure.step('Открываем страницу заказа самоката')
     def open_order_page(self):
         self.open_url(Data.ORDER_PAGE)
-        self.click_on_element(OrderPageLocators.COOKIE_BUTTON)
         self.wait_element_visibility_of_element_located(OrderPageLocators.ORDER_HEADER)
 
     @allure.step('Заполняем поле "Имя"')
@@ -38,7 +38,6 @@ class OrderPage(BasePage):
 
     @allure.step('Заполнение персональными данными')
     def order_about_person_page(self, name, surname, address, station, phone):
-        self.open_order_page()
         self.set_name(name)
         self.set_surname(surname)
         self.set_address(address)
@@ -73,7 +72,7 @@ class OrderPage(BasePage):
     def set_comment_delivery(self, comment):
         self.send_keys(OrderPageLocators.INPUT_COMMENT, comment)
 
-
+    @allure.step('Заполнение формы "Про аренду"')
     def order_about_rental_page(self, date_piker, rental_period, color, comment):
         self.set_data_piker(date_piker)
         self.set_rental_period(rental_period)
@@ -86,3 +85,7 @@ class OrderPage(BasePage):
         self.wait_element_visibility_of_element_located(OrderPageLocators.ORDER_MODAL_HEADER)
         self.click_on_element(OrderPageLocators.ORDER_MODAL_SURE_BUTTON)
         assert self.find_element(OrderPageLocators.ORDER_MODAL_HEADER_SUCCESSFULLY_PLACED)
+
+    @allure.step('Тапаем на логотип "Самокат" в форме заказа')
+    def tap_logo_scooter(self):
+        self.click_on_element(MainPageLocators.LOGO_SCOOTER)

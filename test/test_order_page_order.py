@@ -1,7 +1,10 @@
+import time
+
 import allure
 import pytest
 
 from data import Data
+from locators.main_page_locators import MainPageLocators
 from locators.order_page_locators import OrderPageLocators
 
 
@@ -23,16 +26,19 @@ class TestOrderPage:
         assert Data.ORDER_PAGE == main_page.get_current_url()
 
     person_data = [
-            ['Александр', 'Янушкевич', 'Москва', 'Лубянка', '79900000000', '21', 'сутки',
+            [MainPageLocators.ORDER_BUTTON, 'Александр', 'Янушкевич', 'Москва', 'Лубянка', '79900000000', '21', 'сутки',
              'чёрный жемчуг', 'Не звонить'],
-            ['Алексей', 'Сильченко', 'Москва', 'Черкизовская', '79955555555', '25', 'трое суток',
+            [MainPageLocators.ORDER_MIDDLE_BUTTON, 'Алексей', 'Сильченко', 'Москва', 'Черкизовская', '79955555555', '25', 'трое суток',
              'серая безысходность', 'Перед доставкой позвонить']
         ]
     @allure.title('Проверка флоу заказа самоката на сайте "Яндекс.Самоката"')
-    @pytest.mark.parametrize('name, surname, address, station, phone, date_piker, rental_period, color, comment',
+    @pytest.mark.parametrize('button, name, surname, address, station, phone, date_piker, rental_period, color, comment',
                              person_data)
-    def test_check_pop_up_window_successful_order(self, order_page, name, surname, address, station, phone,
+    def test_check_pop_up_window_successful_order(self, main_page, order_page, button, name, surname, address, station, phone,
                                                   date_piker, rental_period, color, comment):
+        main_page.open_main_page()
+        main_page.click_on_cookie()
+        main_page.click_button(button)
         order_page.order_about_person_page(name, surname, address, station, phone)
         order_page.tap_next_page_button()
         order_page.order_about_rental_page(date_piker, rental_period, color, comment)

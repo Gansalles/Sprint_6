@@ -1,6 +1,7 @@
 import allure
 
 from data import Data
+from locators.dzen_page_locator import DzenPageLocator
 from locators.order_page_locators import OrderPageLocators
 from pages.base_page import BasePage
 from locators.main_page_locators import MainPageLocators
@@ -52,3 +53,12 @@ class MainPage(BasePage):
     def tap_order_middle_button(self):
         self.click_on_element(MainPageLocators.ORDER_MIDDLE_BUTTON)
         self.wait_element_visibility_of_element_located(OrderPageLocators.ORDER_HEADER)
+
+    @allure.step("Тапаем на логотип «Яндекса»")
+    def tap_logo_yandex(self):
+        self.click_on_element(MainPageLocators.LOGO_YANDEX)
+        self.witch_to_window(1)
+        self.wait_element_visibility_of_element_located(DzenPageLocator.TITLE_YANDEX_DZEN)
+
+    def click_button(self, locator):
+        self.click_on_element(locator)
