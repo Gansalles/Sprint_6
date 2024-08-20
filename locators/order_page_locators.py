@@ -22,8 +22,8 @@ class OrderPageLocators():
     INPUT_TELEPHONE = By.XPATH, '//input[contains(@placeholder, "Телефон")]'  # Плейсхолдер "Телефон"
     ORDER_NEXT_BUTTON = By.XPATH, '//button[text() = "Далее"]'  # Кнопка "Далее"
     ORDER_HEADER_ABOUT_RENT = By.XPATH, '//div[text() = "Про аренду"]'  # Название "Про аренду"
-    INPUT_DATA_PIKER = By.CLASS_NAME, "react-datepicker__input-container" # "Когда привезти самокат"
-    ORDER_DATA_PIKER = By.CLASS_NAME, "react-datepicker" # "Срок аренды"
+    INPUT_DATA_DELIVERY = By.CLASS_NAME, "react-datepicker__input-container" # "Когда привезти самокат"
+    ORDER_DATA_RENTAL = By.CLASS_NAME, "react-datepicker" # "Срок аренды"
 
     @staticmethod
     def select_data_on_piker(date_piker):
