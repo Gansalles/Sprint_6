@@ -1,6 +1,6 @@
 .git
 .idea
 .pytest_cache
-.vens
+.venv
 __pycache__
 .gitignore
